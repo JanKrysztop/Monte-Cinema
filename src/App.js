@@ -16,15 +16,15 @@ export const App = () => {
   });
 
   const saveFirstStepData = (email, password) => {
-    setFormData((old) => {
-      return { ...old, email, password, stepId: 'personalData' };
+    setFormData((other) => {
+      return { ...other, email, password, stepId: 'personalData' };
     });
   };
 
   const saveSecondStepData = (firstName, lastName, birthDate) => {
-    setFormData((old) => {
+    setFormData((other) => {
       return {
-        ...old,
+        ...other,
         firstName,
         lastName,
         birthDate,
@@ -49,12 +49,12 @@ export const App = () => {
   return (
     <StyledWrapper>
       <StyledHeader>
-        <img src={logo} />
+        <StyledImg src={logo} />
         <StyledParagraph>
           Developed with <span>♥</span> by Monterail
         </StyledParagraph>
       </StyledHeader>
-      <main>{getCurrentStep(formData.stepId)}</main>
+      <StyledMain>{getCurrentStep(formData.stepId)}</StyledMain>
     </StyledWrapper>
   );
 };
@@ -65,22 +65,25 @@ const StyledWrapper = styled.div`
   align-items: flex-start;
   padding: 0px;
   position: relative;
-  width: 1440px;
+  min-width: 1440px;
   height: 1050px;
   background: #ffffff;
 `;
 const StyledHeader = styled.header`
+  margin-bottom: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 25px 48px;
   gap: 311px;
-  width: 1440px;
+  width: 95%;
   height: 98px;
   background: #ffffff;
 `;
-
+const StyledImg = styled.img`
+  height: 60px;
+`;
 const StyledParagraph = styled.p`
   font-family: 'Roboto Mono';
   font-style: normal;
@@ -91,4 +94,11 @@ const StyledParagraph = styled.p`
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #343541;
+`;
+
+const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-self: center;
 `;
