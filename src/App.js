@@ -51,7 +51,7 @@ export const App = () => {
       <StyledHeader>
         <StyledImg src={logo} />
         <StyledParagraph>
-          Developed with <span>♥</span> by Monterail
+          Developed with <StyledSpan>♥</StyledSpan> by Monterail
         </StyledParagraph>
       </StyledHeader>
       <StyledMain>{getCurrentStep(formData.stepId)}</StyledMain>
@@ -77,25 +77,28 @@ const StyledHeader = styled.header`
   align-items: center;
   padding: 25px 48px;
   gap: 311px;
-  width: 95%;
+  width: 93%;
   height: 98px;
   background: #ffffff;
 `;
 const StyledImg = styled.img`
-  height: 60px;
+  height: 50px;
 `;
 const StyledParagraph = styled.p`
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 19px;
   line-height: 21px;
   text-align: right;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #343541;
 `;
-
+const StyledSpan = styled.span`
+  font-size: 25px;
+  color: red;
+`;
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;

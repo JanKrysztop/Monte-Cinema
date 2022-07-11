@@ -23,7 +23,7 @@ export const FirstStep = ({ onFormComplete }) => {
     <>
       <StyledHeader>
         Ahoy you! <br />
-        <span>Care to register?</span>
+        <StyledSpan>Care to register?</StyledSpan>
       </StyledHeader>
       {/* <StyledHeader>Care to register?</StyledHeader> */}
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -75,7 +75,9 @@ const StyledHeader = styled.h1`
   letter-spacing: -0.01em;
   color: #343541;
 `;
-
+const StyledSpan = styled.span`
+  color: gray;
+`;
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -164,7 +166,7 @@ const StyledButtons = styled.div`
 `;
 
 const StyledLink = styled.a`
-  width: 155px;
+  /* width: 155px; */
   height: 18px;
   margin-right: 60px;
   font-family: 'Roboto Mono';
@@ -197,4 +199,10 @@ const StyledNextStep = styled.button`
   color: #ffffff;
   border: none;
   border-radius: 64px;
+  &:hover {
+    background: #a60c0e;
+  }
+  &:active {
+    border: 5px solid #f47073;
+  }
 `;
