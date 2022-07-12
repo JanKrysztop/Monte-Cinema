@@ -12,7 +12,7 @@ export const FirstStep = ({ onFormComplete }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = ({ email, password }) => onFormComplete(email, password);
-  const formValues = watch();
+  // const formValues = watch();
 
   //Toggling password visibilty
   const [passwordShown, setPasswordShown] = useState(false);
@@ -48,24 +48,26 @@ export const FirstStep = ({ onFormComplete }) => {
           />
           <StyledImg src={eye} onClick={togglePasswordVisiblity} />
         </StyledInputContainer>
-        {errors.password?.type === 'minLength' && 'At least 8 characters'}
-        {errors.password?.type === 'pattern' && 'At least one letter'}
-        {errors.password?.type === '' && 'At least one digit'}
-        <p>At least 8 characters</p>
+        <StyledErrors>
+          <p>
+            {errors.password?.type === 'minLength' && 'At least 8 characters'}
+          </p>
+          <p>{errors.password?.type === 'pattern' && 'At least one letter'}</p>
+          <p>{errors.password?.type === 'pattern' && 'At least one digit'}</p>
+        </StyledErrors>
+        {/* <p>At least 8 characters</p>
         <p>At least one letter</p>
-        <p>At least one digit</p>
+        <p>At least one digit</p> */}
         <StyledButtons>
           <StyledLink href="#">Log in instead</StyledLink>
           <StyledNextStep>Next Step</StyledNextStep>
         </StyledButtons>
-        {/* {formValues.email} {formValues.password} */}
       </StyledForm>
     </>
   );
 };
 
 const StyledHeader = styled.h1`
-  width: 603px;
   margin-bottom: 50px;
   font-family: 'Eczar';
   font-style: normal;
@@ -84,8 +86,8 @@ const StyledForm = styled.form`
   align-items: flex-start;
   padding: 64px;
   gap: 20px;
-  width: 600px;
-  height: 500px;
+  width: 500px;
+  height: 400px;
   background: #ffffff;
   box-shadow: 0px 4px 22px rgba(52, 53, 65, 0.15);
   border-radius: 24px;
@@ -157,6 +159,14 @@ const StyledImg = styled.img`
   position: absolute;
   right: 10px;
   top: 0px;
+`;
+const StyledErrors = styled.div`
+  height: 300px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
 `;
 const StyledButtons = styled.div`
   height: 500px;

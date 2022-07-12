@@ -25,7 +25,9 @@ export const SecondStep = ({ onFormComplete }) => {
           id="firstName"
           {...register('firstName', { required: true })}
         />
-        {errors.firstName?.type === 'required' && 'This field is required'}
+        <StyledError>
+          {errors.firstName?.type === 'required' && 'This field is required'}
+        </StyledError>
         <StyledLabel htmlFor="lastName">last name</StyledLabel>
         <StyledInput
           type="text"
@@ -33,22 +35,26 @@ export const SecondStep = ({ onFormComplete }) => {
           id="lastName"
           {...register('lastName', { required: true })}
         />
-        {errors.lastName?.type === 'required' && 'This field is required'}
+        <StyledError>
+          {errors.lastName?.type === 'required' && 'This field is required'}
+        </StyledError>
         <StyledLabel htmlFor="birthDate">date of birth</StyledLabel>
         <StyledInput
-          // type="date"
           type="text"
           name="birthDate"
           id="birthDate"
           placeholder="DD/MM/YYYY"
           {...register('birthDate', {
-            requierd: true,
+            required: true,
             pattern:
               /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
           })}
         />
-        {errors.birthDate?.type === 'pattern' &&
-          'Enter date in DD/MM/YYYY format'}
+        <StyledError>
+          {errors.birthDate?.type === 'required' && 'This field is required'}
+          {errors.birthDate?.type === 'pattern' &&
+            'Enter date in DD/MM/YYYY format'}
+        </StyledError>
         <p>You should be minimum 18 years old</p>
         <StyledInputContainer>
           <StyledCheckbox
@@ -57,12 +63,14 @@ export const SecondStep = ({ onFormComplete }) => {
             id="privacyPolicy"
             {...register('privacyPolicy', { required: true })}
           />
-          <p>
+          <StyledPolicy>
             I accept <a href="#">Privacy Policy</a>
-          </p>
+          </StyledPolicy>
         </StyledInputContainer>
-        {errors.privacyPolicy?.type === 'required' && 'This field is required'}
-
+        <StyledError>
+          {errors.privacyPolicy?.type === 'required' &&
+            'You have to accept Privacy Policy to continiue'}
+        </StyledError>
         <StyledButtons>
           <StyledLink href="#">Log in instead</StyledLink>
           <StyledRegister>Next Step</StyledRegister>
@@ -91,10 +99,11 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 150px;
   padding: 64px;
   gap: 20px;
-  width: 600px;
-  height: 500px;
+  width: 500px;
+  height: 610px;
   background: #ffffff;
   box-shadow: 0px 4px 22px rgba(52, 53, 65, 0.15);
   border-radius: 24px;
@@ -129,6 +138,15 @@ const StyledInput = styled.input`
     border: 2px solid #2f80ed;
   }
 `;
+const StyledError = styled.p`
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+  color: #ec1115;
+`;
+
 const StyledInputContainer = styled.div`
   display: flex;
   font-size: 18px;
@@ -137,6 +155,14 @@ const StyledCheckbox = styled.input`
   transform: scale(1.5);
   margin-right: 10px;
 `;
+const StyledPolicy = styled.p`
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+`;
+
 const StyledButtons = styled.div`
   height: 500px;
   display: flex;

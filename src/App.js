@@ -68,6 +68,9 @@ const StyledWrapper = styled.div`
   min-width: 1440px;
   height: 1050px;
   background: #ffffff;
+  /* @media screen (min-width: 375px) {
+    max-width: 1024px;
+  } */
 `;
 const StyledHeader = styled.header`
   margin-bottom: 60px;
@@ -78,17 +81,17 @@ const StyledHeader = styled.header`
   padding: 25px 48px;
   gap: 311px;
   width: 93%;
-  height: 98px;
+  height: 80px;
   background: #ffffff;
 `;
 const StyledImg = styled.img`
-  height: 50px;
+  height: 40px;
 `;
 const StyledParagraph = styled.p`
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 500;
-  font-size: 19px;
+  font-size: 15px;
   line-height: 21px;
   text-align: right;
   letter-spacing: 0.03em;
@@ -96,12 +99,11 @@ const StyledParagraph = styled.p`
   color: #343541;
 `;
 const StyledSpan = styled.span`
-  font-size: 25px;
+  font-size: 20px;
   color: red;
 `;
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-self: center;
 `;

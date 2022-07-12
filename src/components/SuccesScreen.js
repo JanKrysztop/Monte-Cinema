@@ -17,12 +17,12 @@ export const SuccesScreen = ({ formData }) => {
   );
 };
 const StyledWrapper = styled.div`
+  margin-top: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 const StyledHeader = styled.h1`
-  /* width: 603px; */
   margin-bottom: 50px;
   font-family: 'Eczar';
   font-style: normal;
@@ -44,6 +44,7 @@ const StyledMessage = styled.div`
 `;
 
 const StyledGoTo = styled.button`
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
