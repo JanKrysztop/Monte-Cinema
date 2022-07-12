@@ -93,6 +93,7 @@ const StyledHeader = styled.h1`
   @media (max-width: 375px) {
     font-size: 40px;
     line-height: 42px;
+    text-align: center;
   }
 `;
 const StyledSpan = styled.span`
