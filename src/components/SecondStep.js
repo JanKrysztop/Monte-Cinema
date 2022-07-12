@@ -5,7 +5,7 @@ export const SecondStep = ({ onFormComplete }) => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm();
   const onSubmit = ({ firstName, lastName, birthDate }) =>
@@ -81,7 +81,6 @@ export const SecondStep = ({ onFormComplete }) => {
 };
 
 const StyledHeader = styled.h1`
-  width: 603px;
   margin-bottom: 50px;
   font-family: 'Eczar';
   font-style: normal;
@@ -90,6 +89,11 @@ const StyledHeader = styled.h1`
   line-height: 82px;
   letter-spacing: -0.01em;
   color: #343541;
+
+  @media (max-width: 375px) {
+    font-size: 40px;
+    line-height: 42px;
+  }
 `;
 const StyledSpan = styled.span`
   color: gray;
@@ -100,13 +104,17 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 150px;
-  padding: 64px;
   gap: 20px;
-  width: 500px;
-  height: 610px;
+  width: 100%;
   background: #ffffff;
-  box-shadow: 0px 4px 22px rgba(52, 53, 65, 0.15);
-  border-radius: 24px;
+  box-sizing: border-box;
+
+  @media (min-width: 375px) {
+    padding: 64px;
+    width: 600px;
+    box-shadow: 0px 4px 22px rgba(52, 53, 65, 0.15);
+    border-radius: 24px;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -120,12 +128,13 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input`
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 15px;
   gap: 10px;
-  width: 472px;
+  width: 100%;
   background: #f7f7f7;
   border-radius: 8px;
   font-size: 20px;
@@ -164,27 +173,31 @@ const StyledPolicy = styled.p`
 `;
 
 const StyledButtons = styled.div`
-  height: 500px;
   display: flex;
   align-self: center;
   align-items: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  gap: 40px;
+
+  @media (min-width: 375px) {
+    flex-direction: row;
+  }
 `;
 
 const StyledLink = styled.a`
-  /* width: 155px; */
   height: 18px;
-  margin-right: 60px;
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: 0.015em;
   color: #ec1115;
   text-decoration: none;
+  width: 100%;
 `;
 
 const StyledRegister = styled.button`
@@ -198,16 +211,20 @@ const StyledRegister = styled.button`
   font-size: 18px;
   line-height: 100%;
   gap: 10px;
-  width: 228px;
   height: 56px;
   background: #ec1115;
   color: #ffffff;
   border: none;
   border-radius: 64px;
+  width: 100%;
   &:hover {
     background: #a60c0e;
   }
   &:active {
     border: 5px solid #f47073;
+  }
+
+  @media (min-width: 375px) {
+    flex-grow: 1;
   }
 `;

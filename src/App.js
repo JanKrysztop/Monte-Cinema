@@ -60,29 +60,23 @@ export const App = () => {
 };
 
 const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding: 0px;
   position: relative;
-  min-width: 1440px;
   height: 1050px;
   background: #ffffff;
-  /* @media screen (min-width: 375px) {
-    max-width: 1024px;
-  } */
 `;
 const StyledHeader = styled.header`
   margin-bottom: 60px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 25px 48px;
-  gap: 311px;
-  width: 93%;
+
   height: 80px;
   background: #ffffff;
+  @media (max-width: 375px) {
+    justify-content: center;
+  }
 `;
 const StyledImg = styled.img`
   height: 40px;
@@ -97,6 +91,10 @@ const StyledParagraph = styled.p`
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #343541;
+
+  @media (max-width: 375px) {
+    display: none;
+  }
 `;
 const StyledSpan = styled.span`
   font-size: 20px;
@@ -105,5 +103,6 @@ const StyledSpan = styled.span`
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
-  align-self: center;
+  align-items: center;
+  padding: 24px;
 `;

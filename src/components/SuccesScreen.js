@@ -6,7 +6,7 @@ export const SuccesScreen = ({ formData }) => {
       <StyledHeader>Good job {formData.firstName}!</StyledHeader>
       <StyledMessage>
         <p>
-          We have sent an email to <span>{formData.email}</span>.
+          We have sent an email to <StyledSpan>{formData.email}</StyledSpan>.
         </p>
         <p>
           Make sure to click the link from the message to activate your account.
@@ -31,6 +31,10 @@ const StyledHeader = styled.h1`
   line-height: 82px;
   letter-spacing: -0.01em;
   color: #343541;
+  @media (max-width: 375px) {
+    font-size: 40px;
+    line-height: 42px;
+  }
 `;
 const StyledMessage = styled.div`
   margin-bottom: 30px;
@@ -41,6 +45,10 @@ const StyledMessage = styled.div`
   line-height: 21px;
   text-align: center;
   color: #292a33;
+`;
+
+const StyledSpan = styled.span`
+  font-weight: bold;
 `;
 
 const StyledGoTo = styled.button`
@@ -66,5 +74,8 @@ const StyledGoTo = styled.button`
   }
   &:active {
     border: 5px solid #f47073;
+  }
+  @media (max-width: 375px) {
+    width: 100%;
   }
 `;

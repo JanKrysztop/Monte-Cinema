@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { appendErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import eye from '../icons/eye.svg';
 
@@ -8,11 +8,10 @@ export const FirstStep = ({ onFormComplete }) => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // watch,
+    formState: { errors, isSubmitted },
   } = useForm();
   const onSubmit = ({ email, password }) => onFormComplete(email, password);
-  // const formValues = watch();
 
   //Toggling password visibilty
   const [passwordShown, setPasswordShown] = useState(false);
@@ -25,7 +24,6 @@ export const FirstStep = ({ onFormComplete }) => {
         Ahoy you! <br />
         <StyledSpan>Care to register?</StyledSpan>
       </StyledHeader>
-      {/* <StyledHeader>Care to register?</StyledHeader> */}
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledLabel htmlFor="email">email</StyledLabel>
         <StyledEmail
@@ -49,15 +47,40 @@ export const FirstStep = ({ onFormComplete }) => {
           <StyledImg src={eye} onClick={togglePasswordVisiblity} />
         </StyledInputContainer>
         <StyledErrors>
-          <p>
-            {errors.password?.type === 'minLength' && 'At least 8 characters'}
+          <p
+            style={{
+              color: isSubmitted
+                ? errors.password?.type === 'minLength'
+                  ? 'red'
+                  : 'green'
+                : 'black',
+            }}
+          >
+            At least 8 characters
           </p>
-          <p>{errors.password?.type === 'pattern' && 'At least one letter'}</p>
-          <p>{errors.password?.type === 'pattern' && 'At least one digit'}</p>
+          <p
+            style={{
+              color: isSubmitted
+                ? errors.password?.type === 'pattern'
+                  ? 'red'
+                  : 'green'
+                : 'black',
+            }}
+          >
+            At least one letter
+          </p>
+          <p
+            style={{
+              color: isSubmitted
+                ? errors.password?.type === 'pattern'
+                  ? 'red'
+                  : 'green'
+                : 'black',
+            }}
+          >
+            At least one digit
+          </p>
         </StyledErrors>
-        {/* <p>At least 8 characters</p>
-        <p>At least one letter</p>
-        <p>At least one digit</p> */}
         <StyledButtons>
           <StyledLink href="#">Log in instead</StyledLink>
           <StyledNextStep>Next Step</StyledNextStep>
@@ -76,6 +99,11 @@ const StyledHeader = styled.h1`
   line-height: 82px;
   letter-spacing: -0.01em;
   color: #343541;
+
+  @media (max-width: 375px) {
+    font-size: 40px;
+    line-height: 42px;
+  }
 `;
 const StyledSpan = styled.span`
   color: gray;
@@ -84,13 +112,17 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 64px;
   gap: 20px;
-  width: 500px;
-  height: 400px;
   background: #ffffff;
-  box-shadow: 0px 4px 22px rgba(52, 53, 65, 0.15);
-  border-radius: 24px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (min-width: 375px) {
+    padding: 64px;
+    width: 600px;
+    box-shadow: 0px 4px 22px rgba(52, 53, 65, 0.15);
+    border-radius: 24px;
+  }
 `;
 
 const StyledLabel = styled.label`
@@ -104,12 +136,13 @@ const StyledLabel = styled.label`
 `;
 
 const StyledEmail = styled.input`
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 15px;
   gap: 10px;
-  width: 472px;
+  width: 100%;
   background: #f7f7f7;
   border-radius: 8px;
   font-size: 20px;
@@ -130,15 +163,17 @@ const StyledInputContainer = styled.div`
   position: relative;
   padding: 0;
   margin: 0;
+  width: 100%;
 `;
 const StyledPassword = styled.input`
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
   gap: 10px;
-  width: 472px;
+  width: 100%;
   background: #f7f7f7;
   border-radius: 8px;
   font-size: 20px;
@@ -161,7 +196,6 @@ const StyledImg = styled.img`
   top: 0px;
 `;
 const StyledErrors = styled.div`
-  height: 300px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -169,27 +203,31 @@ const StyledErrors = styled.div`
   line-height: 170%;
 `;
 const StyledButtons = styled.div`
-  height: 500px;
   display: flex;
   align-self: center;
   align-items: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  gap: 40px;
+
+  @media (min-width: 375px) {
+    flex-direction: row;
+  }
 `;
 
 const StyledLink = styled.a`
-  /* width: 155px; */
   height: 18px;
-  margin-right: 60px;
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: 0.015em;
   color: #ec1115;
   text-decoration: none;
+  width: 100%;
 `;
 
 const StyledNextStep = styled.button`
@@ -203,16 +241,20 @@ const StyledNextStep = styled.button`
   font-size: 18px;
   line-height: 100%;
   gap: 10px;
-  width: 228px;
   height: 56px;
   background: #ec1115;
   color: #ffffff;
   border: none;
   border-radius: 64px;
+  width: 100%;
   &:hover {
     background: #a60c0e;
   }
   &:active {
     border: 5px solid #f47073;
+  }
+
+  @media (min-width: 375px) {
+    flex-grow: 1;
   }
 `;
